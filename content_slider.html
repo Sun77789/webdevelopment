@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"> </script>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"> </script>
+    
+    <script>
+        
+        $(function() {
+          
+          var current = 1;
+          
+          var iterate = function(){
+          
+          var i = parseInt(current+1);
+          
+          var lis = $('#rotmenu').children('li').size();
+          
+          if(i>lis) i = 1;
+          
+          display($('#rotmenu li:nth-child('+i+')'));
+          
+          }
+          
+          display($('#rotmenu li:first'));
+          
+          var slidetime = setInterval(iterate,5000);
+          
+          
+          
+          $('#rotmenu li').bind('click',function(e){
+                                
+                                clearTimeout(slidetime);
+                                
+                                display($(this));
+                                
+                                e.preventDefault();
+                                
+                                });
+          
+          
+          
+          function display(elem){
+          
+          var $this   = elem;
+          
+          var repeat  = false;
+          
+          if(current == parseInt($this.index() + 1))
+          
+          repeat = true;
+          
+          
+          
+          /* slide in the current one */
+          
+          if(!repeat)
+          
+          $this.parent()
+          
+          .find('li:nth-child('+current+') a')
+          
+          .stop(true,true)
+          
+          .animate({'marginRight':'-20px'},300,function(){
+                   
+                   $(this).animate({'opacity':'0.7'},700);
+                   
+                   });
+          
+          
+          
+          current = parseInt($this.index() + 1);
+          
+          
+          
+          var elem = $('a',$this);
+          
+          
+          
+          /* slide out the clicked or next one */
+          
+          elem.stop(true,true).animate({'marginRight':'0px','opacity':'1.0'},300);
+          
+          
+          
+          /* the heading and description will slide out, change the content and slide back in */
+          
+          var info_elem = elem.next();
+          
+          $('#rot1 .heading').animate({'left':'-420px'}, 500,'easeOutCirc',function(){
+                                      
+                                      $('h1',$(this)).html(info_elem.find('.info_heading').html());
+                                      
+                                      $(this).animate({'left':'0px'},400,'easeInOutQuad');
+                                      
+                                      });
+          
+          $('#rot1 .description').animate({'bottom':'-270px'},500,'easeOutCirc',function(){
+                                          
+                                          $('p',$(this)).html(info_elem.find('.info_description').html());
+                                          
+                                          $(this).animate({'bottom':'0px'},400,'easeInOutQuad');
+                                          
+                                          })
+          
+          
+          
+          /* the image will fade out and another will fade in */
+          
+          
+          
+          $('#rot1').prepend(
+                             
+                             $('<img/>',{
+                               
+                               style    :	'opacity:0',
+                               
+                               className : 'bg'
+                               
+                               }).load(
+                                       
+                                       function(){
+                                       
+                                       $(this).animate({'opacity':'1'},600);
+                                       
+                                       $('#rot1 img:first').next().animate({'opacity':'0'},700,function(){
+                                                                           
+                                                                           $(this).remove();
+                                                                           
+                                                                           });
+                                       
+                                       }
+                                       
+                                       ).attr('src',info_elem.find('.info_image').html()).attr('width','800').attr('height','auto').attr('margin-top','200px')
+                             
+                             );
+          
+          }
+          
+          
+          
+          });
+          
+        </script>
+    
+    <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    
+    <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans' rel='stylesheet' type='text/css'>
+    
+    <style type="text/css">
+    
+    #SideBar {
+    
+    position: fixed;
+    
+    background-color: #333;
+    
+    top:0px;
+    
+    left: 0px;
+    
+    bottom:0px;
+    
+    height: 100%;
+    
+    width: 300px;
+    
+    border-right: 10px double #ccc;
+    
+    }
+    
+    #SideBar p {
+    
+    font-family: 'Bubblegum Sans';
+    
+    font-size: 14px;
+    
+    margin: 10px;
+    
+    color: white;
+    
+    }
+    
+    
+    
+    #Title {
+    
+    font-family: 'Satisfy';
+    
+    font-size: 22px;
+    
+    margin-top: 50px;
+    
+    color: white;
+    
+    text-shadow: 2px 2px 10px #ccc;
+    
+    margin-bottom: 20px;
+    
+    text-align: center;
+    
+    }
+    
+    #Title:hover {
+    
+    text-decoration: underline;
+    
+    text-shadow: 0px 0px 10px #ccc;
+    
+    -webkit-transition-duration: 0.7s;
+    
+    -moz-transition-duration: 0.7s;
+    
+    transition-duration: 0.7s;
+    
+    }
+    
+    
+    
+    #back {
+    
+    position: absolute;
+    
+    bottom: 20px;
+    
+    right: 10px;
+    
+    color: #ccc;
+    
+    }
+    
+    #SideBar  a {
+    
+    color: #ccc;
+    
+    font-style: none;
+    
+    text-decoration: none;
+    
+    font-size: 10px;
+    
+    cursor: pointer;
+    
+    text-transform: uppercase;
+    
+    }
+    
+    #SideBar  a:hover {
+    
+    font-weight: bold;
+    
+    }
+    
+    .rotator {
+    
+    position: fixed;
+    
+    top: 100px;
+    
+    left: 350px;
+    
+    background-color:#222;
+    
+    background-position: center center;
+    
+    background-position: center center;
+    
+    background-size: 800px auto;
+    
+    text-transform: uppercase;
+    
+    width:800px;
+    
+    height:300px;
+    
+    margin:0px auto;
+    
+    font-family:'Myriad Pro',Arial,Helvetica,sans-serif;
+    
+    color:#fff;
+    
+    letter-spacing:-1px
+    
+    border:3px solid #f0f0f0;
+    
+    overflow:hidden;
+    
+    -moz-box-shadow:0px 0px 10px #222;
+    
+    -webkit-box-shadow:0px 0px 10px #222;
+    
+    box-shadow:0px 0px 20px #222;
+    
+    z-index: 999;
+    
+    }
+    
+    /*
+    
+    img.bg{
+    
+    position:absolute;
+    
+    top:0px;
+    
+    left:100px;
+    
+    width: 800px;
+    
+    background-position: center center;
+    
+    }
+    
+    */
+    
+    #rot1 img {
+    
+    margin-top: -200px;
+    
+    }
+    
+    .rotator ul{
+    
+    list-style:none;
+    
+    position:absolute;
+    
+    right:0px;
+    
+    top:0px;
+    
+    margin-top:6px;
+    
+    z-index: 99999;
+    
+    }
+    
+    
+    
+    .rotator ul li {
+    
+    display: block;
+    
+    float:left;
+    
+    clear:both;
+    
+    width:260px;
+    
+    }
+    
+    
+    
+    .rotator ul li a {
+    
+    width:230px;
+    
+    height:52px;
+    
+    float:right;
+    
+    clear:both;
+    
+    padding-left:10px;
+    
+    text-decoration:none;
+    
+    display:block;
+    
+    line-height:52px;
+    
+    background-color:#222;
+    
+    margin:1px -20px 1px 0px;
+    
+    opacity:0.7;
+    
+    color:#f0f0f0;
+    
+    font-size:20px;
+    
+    border:2px solid #000;
+    
+    border-right:none;
+    
+    outline:none;
+    
+    text-shadow:-1px 1px 1px #000;
+    
+    -moz-border-radius:10px 0px 0px 20px;
+    
+    -webkit-border-top-left-radius:10px;
+    
+    -webkit-border-bottom-left-radius:20px;
+    
+    border-top-left-radius:10px;
+    
+    border-bottom-left-radius:20px;
+    
+    }
+    
+    .rotator ul li a:hover{
+    
+    text-shadow:0px 0px 2px #fff;
+    
+    }
+    
+    
+    
+    .rotator .heading{
+    
+    position:absolute;
+    
+    top: 0px;
+    
+    margin-top: -10px;
+    
+    left:0px;
+    
+    width:500px;
+    
+    }
+    
+    .rotator .heading h1{
+    
+    text-shadow:-1px 1px 1px #555;
+    
+    font-weight:normal;
+    
+    font-size:36px;
+    
+    padding-left:20px;
+    
+    }
+    
+    
+    
+    .rotator .description{
+    
+    width:500px;
+    
+    height:160px;
+    
+    position:absolute;
+    
+    bottom:0px;
+    
+    left:0px;
+    
+    padding-left:10px;
+    
+    background-color:#222;
+    
+    -moz-border-radius:0px 10px 0px 0px;
+    
+    -webkit-border-top-right-radius:10px;
+    
+    border-top-right-radius:10px;
+    
+    opacity:0.7;
+    
+    text-transform:none;
+    
+    border-top:2px solid #000;
+    
+    border-right:2px solid #000;
+    
+    }
+    
+    .rotator .description p{
+    
+    text-shadow:-1px 1px 1px #000;
+    
+    text-transform:none;
+    
+    letter-spacing:normal;
+    
+    line-height:20px;
+    
+    }
+    
+    </style>
+    
+    
+    
+    </html>
+    
+    <body>
+    
+    <div id="SideBar">
+    
+    <div id="Title">The Great Gatsby</div>
+    
+    <p>The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald that follows a cast of characters living in the fictional town of West Egg on prosperous Long Island in the summer of 1922. The story primarily concerns the young and mysterious millionaire Jay Gatsby and his quixotic passion for the beautiful Daisy Buchanan. Considered to be Fitzgerald's magnum opus, The Great Gatsby explores themes of decadence, idealism, resistance to change, social upheaval, and excess, creating a portrait of the Jazz Age that has been described as a cautionary tale regarding the American Dream.<br /><br />
+    
+    Fitzgerald, inspired by the parties he had attended while visiting Long Island's north shore, began planning the novel in 1923 desiring to produce, in his words, "something new — something extraordinary and beautiful and simple and intricately patterned." Progress was slow, however, and Fitzgerald completed his first draft following a move to the French Riviera in 1924. His editor, Maxwell Perkins, felt the book was too vague and convinced the author to revise over the next winter. Fitzgerald was ambivalent about the book's title, at various times wishing to re-title the novel Trimalchio in West Egg.
+    
+    </p>
+    
+    <p> Source: <a src="http://en.wikipedia.org/wiki/The_Great_Gatsby">The Great Gastby</a> </p>
+    
+    <br />  <br />  <br />
+    
+    <div id="back"><a href="http://maubakirova.tumblr.com/" title="made by">This page was made by Malika Aubakirova</a></div>
+    
+    </div>
+    
+    <div class="rotator">
+        
+        <ul id="rotmenu">
+            
+            <li>
+                
+                <a href="rot1">Jay Gatsby</a>
+                
+                <div style="display:none;">
+                    
+                    <div class="info_image">http://25.media.tumblr.com/041c1687e6417562abde797683ef01c8/tumblr_mmil5iNLjj1sosxwro1_500.jpg</div>
+                    
+                    <div class="info_heading">Jay Gatsby</div>
+                    
+                    <div class="info_description">
+                        
+                        a young, mysterious millionaire with shady business connections (later revealed to be a bootlegger), originally from North Dakota. He is obsessed with Daisy Buchanan, whom he had met when he was a young officer stationed in the South during World War I. The character is based on the bootlegger and former World War I officer Max Gerlach, according to Matthew J Bruccoli's biography of F. Scott Fitzgerald. Gatsby is said to have briefly studied at Trinity College, Oxford.
+                        
+                    </div>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="rot2">Nicholas Carraway </a>
+                
+                <div style="display:none;">
+                    
+                    <div class="info_image">http://25.media.tumblr.com/7316bf1ae8d09e3f6bc7547207b13b35/tumblr_mmil5iNLjj1sosxwro3_500.jpg</div>
+                    
+                    <div class="info_heading">Nicholas Carraway</div>
+                    
+                    <div class="info_description">
+                        
+                        a Yale graduate originating from the Midwest, a World War I veteran, and, at the start of the plot, a newly arrived resident of West Egg, who is aged 29 (later 30). He also serves as the first-person narrator of the novel. He is Gatsby's next-door neighbor and a bond salesman. Easy-going, occasionally sarcastic, and initially optimistic, though this latter quality fades as the novel progresses.
+                        
+                    </div>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="rot3">Daisy Buchanan</a>
+                
+                <div style="display:none;">
+                    
+                    <div class="info_image">http://24.media.tumblr.com/8e97f8cc407085d8d2d6592d8632b8e4/tumblr_mmil5iNLjj1sosxwro2_500.jpg</div>
+                    
+                    <div class="info_heading">Daisy Buchanan</div>
+                    
+                    <div class="info_description">
+                        
+                        an attractive and effervescent, if shallow and self-absorbed, young woman, identified as a flapper. She is Nick's second cousin, once removed; and the wife of Tom Buchanan. Daisy is believed to have been inspired by Fitzgerald's own youthful romances with Ginevra King. Daisy once had a romantic relationship with Gatsby, before she married Tom. Her choice between Gatsby and Tom is one of the central conflicts in the novel.
+                        
+                    </div>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="rot4">Thomas Buchanan</a>
+                
+                <div style="display:none;">
+                    
+                    <div class="info_image">http://24.media.tumblr.com/7636c0a9654c6988012349f9206f04cf/tumblr_mmil5iNLjj1sosxwro4_500.jpg</div>
+                    
+                    <div class="info_heading">Thomas "Tom" Buchanan</div>
+                    
+                    <div class="info_description">
+                        
+                        a millionaire who lives on East Egg, and Daisy's husband. Tom is an imposing man of muscular build with a "husky tenor" voice and arrogant demeanor, a former football star at Yale. Buchanan has parallels with William Mitchell, the Chicagoan who married Ginevra King. Buchanan and Mitchell were both Chicagoans with an interest in polo. Like Ginevra's father, whom Fitzgerald resented, Buchanan attended Yale and is a white supremacist. </div>
+                    
+                </div>
+                
+            </li>
+            
+            <li>
+                
+                <a href="rot5">Jordan Baker </a>
+                
+                <div style="display:none;">
+                    
+                    <div class="info_image">http://25.media.tumblr.com/8c7639799265c7d3ac9da316fd1ad731/tumblr_mmil5iNLjj1sosxwro6_500.jpg</div>
+                    
+                    <div class="info_heading">Jordan Baker</div>
+                    
+                    <div class="info_description">
+                        
+                        Daisy Buchanan's long-time friend with "autumn-leaf yellow hair", a firm athletic body, and an aloof attitude. She is Nick Carraway's girlfriend for most of the novel and an amateur golfer with a slightly shady reputation and a penchant for untruthfulness. Fitzgerald told Maxwell Perkins that Jordan was based on the golfer Edith Cummings, a friend of Ginevra King. 
+                    </div>
+                    
+                    </li>
+            
+        </ul>
+        
+        <div id="rot1">
+            
+            <img src="" width="800" height="auto" class="bg" alt=""/>
+            
+            <div class="heading">
+                
+                <h1></h1>
+                
+            </div>
+            
+            <div class="description">
+                
+                <p></p>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+    </body>
+    
+</html>
+
