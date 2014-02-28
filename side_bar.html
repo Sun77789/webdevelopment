@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><title>Zooming</title>
+    <!--=
+     
+     maubakirova.tumblr.com
+     Hope you like it. If you have any Qs, I will always try to answer.
+     
+     -->
+
+<link href="http://static.tumblr.com/epamxyy/30ommfdtg/jquery.fancybox-1.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"> </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"> </script>
+    <script src="http://static.tumblr.com/epamxyy/6kTmmf0e0/jquery.fancybox-1.3.4.js"></script>
+    
+    
+    <script type="text/javascript" src="http://static.tumblr.com/epamxyy/PHFmmhroy/gatsby.js"></script>
+    
+
+
+<link href='http://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Kristi' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Skranji:400,700' rel='stylesheet' type='text/css'>
+    
+    <script type="text/javascript" src="http://static.tumblr.com/q0etgkr/lPHlj76n8/infinitescrollingbycodysherman.js"></script>
+    <script type="text/javascript" src="http://codysherman.tumblr.com/tools/infinite-scrolling/code"></script>
+    
+    <style type="text/css">
+    ::-webkit-scrollbar {width: 6px; height: 4px; background: #ffffff; }
+    ::-webkit-scrollbar-thumb { background-color: #000000;
+    -webkit-borde-radius: 1ex; }
+    
+    body {
+    background-color: white;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    font-family: 'georgia';
+    color: #000;
+    color:{color:Text};
+    font-size:14px;
+    line-height:110%;
+    text-align: left;
+    }
+    
+    a:link, a:active, a:visited {
+    text-decoration:none;
+    color: #333;
+    color:{color:Links};
+    -webkit-transition-duration: 0.7s;
+    -moz-transition-duration: 0.7s;
+    }
+    
+    a:hover {
+    color: #ccc;
+    color:{color:LinksHover};
+    background-color:{color:LinkHoverBG};
+    -webkit-transition-duration:0.7s;
+    -moz-transition-duration: 0.7s;
+    }
+    
+    #SideBar {
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-color: #000;
+    background-color: {color:SideBG};
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin-bottom: 0px;
+    height: 100%;
+    width: 150px;
+    border-right: 10px double #D4AF37;
+    }
+    #gallery {
+    display: block;
+    margin-top: 150px;
+    text-align: center;
+    }
+    #gallery img {
+    display: block;
+    text-align: center;
+    margin-left: 40px;
+    margin-bottom: 15px;
+    width: 70px;
+    height: auto;
+    box-shadow: 0px 0px 10px #D4AF37;
+    border-radius: 5px;
+    }
+    
+    #Side {
+    position: fixed;
+    background-color: white;
+    left: 300px;
+    top: 100px;
+    width: 700px;
+    height: auto;
+    text-align: center;
+    border-radius: 10px;
+    }
+    
+    #Avatar img{
+    padding 10px 20px;
+    width: 250px;
+    height: auto;
+    border: 3px double #D4AF37;
+    }
+    #desc {
+    font-size: 18px;
+    font-family: 'Just Me Again Down Here';
+    width 200px;
+    color: #fff;
+    color: black;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    }
+    
+    #Title {
+    line-height: 100%;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: bold;
+    font-family: 'Skranji';
+    text-align: center;
+    color: black;
+    }
+    
+    #Title:hover {
+    text-shadow: 0px 0px 10px #ccc;
+    }
+    </style>
+
+</head>
+<body>
+
+<div id="Side">
+<div id="Title">Famous Art</div>
+<div id="Avatar">
+<img src="http://static.tumblr.com/epamxyy/W7en1ot0e/van_eyck_-_arnolfini_portrait.jpg" />
+</div>
+<div id="desc">This page is made by Malika Aubakirova and is based on the <a id = "special" href="http://fancybox.net/" traget="_blank"> Fancybox </a>jQuery plugin <br />
+Thank you for viewing!
+</div>
+</div>
+
+<div id="SideBar">
+<div id="gallery">
+<a href="http://static.tumblr.com/epamxyy/uCVn1osqk/famous-art-jelly-beans.jpg" rel="gallery"><img src="http://static.tumblr.com/epamxyy/uCVn1osqk/famous-art-jelly-beans.jpg" width="70"/></a>
+<a href="http://static.tumblr.com/epamxyy/qevn1osta/much-the_scream.jpg" rel="gallery"><img src="http://static.tumblr.com/epamxyy/qevn1osta/much-the_scream.jpg" width="70"/></a>
+<a href="http://static.tumblr.com/epamxyy/Izgn1osu7/free-shipping-font-b-famous-b-font-font-b-art-b-font-fabric-picture-angel-head.jpg" rel="gallery"><img src="http://static.tumblr.com/epamxyy/Izgn1osu7/free-shipping-font-b-famous-b-font-font-b-art-b-font-fabric-picture-angel-head.jpg" width="70"/></a>
+<a href="http://static.tumblr.com/epamxyy/vI6n1osxd/van_gogh_-_starry_night.jpg" rel="gallery"><img src="http://static.tumblr.com/epamxyy/vI6n1osxd/van_gogh_-_starry_night.jpg" width="70"/></a>
+<a href="http://static.tumblr.com/epamxyy/nxdn1osvp/art_007.jpg" rel="gallery"><img src="http://static.tumblr.com/epamxyy/nxdn1osvp/art_007.jpg" width="70"/></a>
+</div>
+</div>
+
+
+</body>
